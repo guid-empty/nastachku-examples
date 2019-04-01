@@ -18,11 +18,10 @@ void beginFrame(Duration timeStamp) {
   final Canvas canvas = Canvas(recorder, physicalBounds);
   canvas
     ..scale(devicePixelRatio, devicePixelRatio)
-    ..translate(0, 100)
     ..drawColor(Color(0xFFFFFFFF), BlendMode.color);
 
   canvas
-    ..translate(128, 0)
+    ..translate(128, 100)
     ..rotate(radians(60));
   Rect rect = Rect.fromLTWH(0, 0, 200, 100);
 
