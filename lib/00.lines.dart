@@ -23,9 +23,9 @@ void beginFrame(Duration timeStamp) {
 
   canvas
     ..drawColor(backgroundColor, ui.BlendMode.color)
-    ..drawLine(ui.Offset(0, 0), ui.Offset(0, logicalSize.height), paint)
-    ..drawLine(ui.Offset(0, 0), ui.Offset(logicalSize.width, 0), paint)
-    ..drawLine(ui.Offset(0, 0), ui.Offset(logicalSize.width, logicalSize.height), paint);
+    ..drawLine(ui.Offset.zero, ui.Offset(0, logicalSize.height), paint)
+    ..drawLine(ui.Offset.zero, ui.Offset(logicalSize.width, 0), paint)
+    ..drawLine(ui.Offset.zero, ui.Offset(logicalSize.width, logicalSize.height), paint);
 
   final ui.Picture picture = recorder.endRecording();
 
