@@ -1,6 +1,6 @@
 import 'dart:ui';
+
 import 'package:flutter/painting.dart';
-import 'dart:math';
 import 'package:vector_math/vector_math_64.dart';
 
 void main() {
