@@ -25,4 +25,4 @@ void main() {
 }
 
 Container getThin({Color color = Colors.blue}) => Container(width: 30, height: 100, color: color);
-Container getFat({Color color = Colors.blue}) => Container(width: 60, height: 100, color: color);
+Container getFat({Color color = Colors.green}) => Container(width: 60, height: 100, color: color);
