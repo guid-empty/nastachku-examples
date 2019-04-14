@@ -2,11 +2,8 @@ import 'dart:ui';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 void main() {
-  debugPrintBeginFrameBanner = true;
-  debugPrintEndFrameBanner = true;
   window.onBeginFrame = beginFrame;
   window.scheduleFrame();
 }
@@ -53,7 +50,7 @@ void beginFrame(Duration timeStamp) {
     ..pop();
 
   window.render(sceneBuilder.build());
-  //if (frame < 1) {
+  if (frame < 1) {
     window.scheduleFrame();
-  //}
+  }
 }
