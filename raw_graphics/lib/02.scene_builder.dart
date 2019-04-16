@@ -14,8 +14,7 @@ void beginFrame(Duration timeStamp) {
 
   final Rect physicalBounds = Offset.zero & (logicalSize * devicePixelRatio);
   final PictureRecorder recorder = PictureRecorder();
-  final Canvas canvas = Canvas(recorder, physicalBounds);
-  canvas..scale(devicePixelRatio, devicePixelRatio);
+  final Canvas canvas = Canvas(recorder, physicalBounds)..scale(devicePixelRatio, devicePixelRatio);
 
   final paint = Paint()
     ..style = PaintingStyle.fill
@@ -43,6 +42,8 @@ void beginFrame(Duration timeStamp) {
   final Picture picture = recorder.endRecording();
 
   final SceneBuilder sceneBuilder = SceneBuilder()
+    ..pushOffset(0, 0)
+    ..addPerformanceOverlay(0x08, Rect.fromLTWH(0, physicalBounds.height - 400, physicalBounds.width, 400))
     ..pushOffset(250, 250)
     ..pushOpacity(0x50)
     ..addPicture(Offset.zero, picture)
