@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import 'package:vector_math/vector_math_64.dart';
+import 'package:flutter/painting.dart';
+
 void main() {
   window.onBeginFrame = beginFrame;
   window.scheduleFrame();
@@ -42,18 +45,12 @@ void beginFrame(Duration timeStamp) {
   final Picture picture = recorder.endRecording();
 
   final SceneBuilder sceneBuilder = SceneBuilder()
-    ..pushOffset(0, 0)
-    ..addPerformanceOverlay(0x08, Rect.fromLTWH(0, physicalBounds.height - 400, physicalBounds.width, 400))
     ..pushOffset(250, 250)
     ..pushOpacity(0x50)
     ..addPicture(Offset.zero, picture)
     ..pop()
     ..pushOffset(50, 50)
     ..pushOpacity(0x80)
-    ..addPicture(Offset.zero, picture)
-    ..pop()
-    ..pushOffset(50, 50)
-    ..pushOpacity(0xBB)
     ..addPicture(Offset.zero, picture)
     ..pop()
     ..pushOffset(50, 50)
@@ -66,6 +63,11 @@ void beginFrame(Duration timeStamp) {
     ..pop()
     ..pushOffset(0, 1000)
     ..pushOpacity(0xFF)
+    ..pushTransform((Matrix4.identity()
+          ..setEntry(3, 2, 0.002)
+          ..rotateX(radians(10))
+          ..rotateY(radians(10)))
+        .storage)
     ..addPicture(Offset.zero, picture)
     ..pop();
 
