@@ -8,7 +8,6 @@ void main() {
 }
 
 Duration start;
-
 void beginFrame(Duration timeStamp) {
   start ??= timeStamp;
   final double devicePixelRatio = window.devicePixelRatio;
@@ -33,7 +32,6 @@ void beginFrame(Duration timeStamp) {
 
   final radius = 50.0;
   final x = logicalSize.width / 2;
-
   final initialY = 10;
 
   var frame = (timeStamp - start).inMilliseconds /
@@ -48,7 +46,6 @@ void beginFrame(Duration timeStamp) {
     ..pushClipRect(physicalBounds)
     ..addPicture(Offset.zero, picture)
     ..pop();
-
   window.render(sceneBuilder.build());
   if (frame < 1) {
     window.scheduleFrame();
