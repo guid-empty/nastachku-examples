@@ -34,10 +34,10 @@ void beginFrame(Duration timeStamp) {
   final x = logicalSize.width / 2;
   final initialY = 10;
 
-  var frame = (timeStamp - start).inMilliseconds /
+  var segment = (timeStamp - start).inMilliseconds /
       Duration.millisecondsPerSecond;
-  frame = frame > 1 ? 1 : frame;
-  double restPath = (logicalSize.height - radius - initialY) * frame;
+  segment = segment > 1 ? 1 : segment;
+  double restPath = (logicalSize.height - radius - initialY) * segment;
 
   canvas.drawCircle(Offset(x, initialY + restPath), radius, shapePaint);
 
@@ -47,7 +47,7 @@ void beginFrame(Duration timeStamp) {
     ..addPicture(Offset.zero, picture)
     ..pop();
   window.render(sceneBuilder.build());
-  if (frame < 1) {
+  if (segment < 1) {
     window.scheduleFrame();
   }
 }
