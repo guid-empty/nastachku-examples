@@ -11,7 +11,6 @@ Duration start;
 
 void beginFrame(Duration timeStamp) {
   start ??= timeStamp;
-
   final double devicePixelRatio = window.devicePixelRatio;
   final Size logicalSize = window.physicalSize / devicePixelRatio;
 
@@ -34,13 +33,15 @@ void beginFrame(Duration timeStamp) {
 
   final radius = 50.0;
   final x = logicalSize.width / 2;
+
   final initialY = 10;
 
-  var frame = (timeStamp - start).inMilliseconds / Duration.millisecondsPerSecond;
+  var frame = (timeStamp - start).inMilliseconds /
+      Duration.millisecondsPerSecond;
   frame = frame > 1 ? 1 : frame;
-  double restPathToDrop = (logicalSize.height - radius - initialY) * frame;
+  double restPath = (logicalSize.height - radius - initialY) * frame;
 
-  canvas.drawCircle(Offset(x, initialY + restPathToDrop), radius, shapePaint);
+  canvas.drawCircle(Offset(x, initialY + restPath), radius, shapePaint);
 
   final Picture picture = recorder.endRecording();
   final SceneBuilder sceneBuilder = SceneBuilder()
