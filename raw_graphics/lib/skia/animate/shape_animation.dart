@@ -1,15 +1,22 @@
 import 'dart:ui';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
+Duration start;
+Duration previousFrame;
 void main() {
+  previousFrame = Duration.zero;
   window.onBeginFrame = beginFrame;
   window.scheduleFrame();
 }
 
-Duration start;
+
 void beginFrame(Duration timeStamp) {
   start ??= timeStamp;
+  final diff = (timeStamp - previousFrame).inMicroseconds;
+  previousFrame = timeStamp;
+
   final double devicePixelRatio = window.devicePixelRatio;
   final Size logicalSize = window.physicalSize / devicePixelRatio;
 
@@ -35,17 +42,28 @@ void beginFrame(Duration timeStamp) {
   final initialY = 10;
 
   var segment = (timeStamp - start).inMilliseconds /
-      Duration.millisecondsPerSecond;
+      (Duration.millisecondsPerSecond * 3);
   segment = segment > 1 ? 1 : segment;
   double restPath = (logicalSize.height - radius - initialY) * segment;
 
   canvas.drawCircle(Offset(x, initialY + restPath), radius, shapePaint);
+
+  final ParagraphBuilder paragraphBuilder = ParagraphBuilder(ParagraphStyle(
+    textAlign: TextAlign.start,
+    textDirection: TextDirection.ltr,
+    fontSize: 20,
+  ))
+    ..pushStyle(ui.TextStyle(foreground: shapePaint))
+    ..addText(diff.toString());
+  final Paragraph paragraph = paragraphBuilder.build()..layout(ui.ParagraphConstraints(width: logicalSize.width));
+  canvas.drawParagraph(paragraph, Offset(x + radius, initialY + restPath - 10));
 
   final Picture picture = recorder.endRecording();
   final SceneBuilder sceneBuilder = SceneBuilder()
     ..pushClipRect(physicalBounds)
     ..addPicture(Offset.zero, picture)
     ..pop();
+
   window.render(sceneBuilder.build());
   if (segment < 1) {
     window.scheduleFrame();
