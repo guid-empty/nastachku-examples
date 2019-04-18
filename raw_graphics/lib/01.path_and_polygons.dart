@@ -27,44 +27,43 @@ void beginFrame(Duration timeStamp) {
     ..style = ui.PaintingStyle.fill
     ..strokeCap = ui.StrokeCap.round;
 
-  final hornHeight = 70.0;
-  final hornWidth = 100.0;
+  final hornHeight = 168.0;
+  final hornWidth = 222.0;
 
-  final logoHeight = 180.0;
-  final logoWidth = 180.0;
+  final logoHeight = 280.0;
+  final logoWidth = 280.0;
+  final logoOffsetX = (logicalSize.width - logoWidth) / 2;
+  final logoOffsetY = 100.0;
 
-  final hornOffsetX = (logicalSize.width - hornWidth) / 2 + 6;
-  double hornOffsetY = (logicalSize.height - hornHeight) / 2 + hornHeight;
+  final hornOffsetX = logoOffsetX + logoWidth / 2 - hornWidth / 2 + 24;
+  double hornOffsetY = logoOffsetY + logoHeight / 2 + hornHeight / 2;
 
   canvas
     ..drawColor(backgroundColor, ui.BlendMode.color)
-    ..drawRect(
-        ui.Rect.fromLTWH(
-            (logicalSize.width - logoWidth) / 2, (logicalSize.height - logoHeight) / 2, logoWidth, logoHeight),
-        paint);
+    ..drawRect(ui.Rect.fromLTWH(logoOffsetX, logoOffsetY, logoWidth, logoHeight), paint);
 
   canvas
     ..drawPath(
         ui.Path()
           ..moveTo(hornOffsetX, hornOffsetY)
-          ..lineTo(hornOffsetX - 012, hornOffsetY - 25)
-          ..lineTo(hornOffsetX + 000, hornOffsetY - 22)
-          ..lineTo(hornOffsetX + 072, hornOffsetY - 84)
-          ..lineTo(hornOffsetX + 099, hornOffsetY - 26)
-          ..lineTo(hornOffsetX + 060, hornOffsetY - 21)
-          ..lineTo(hornOffsetX + 059, hornOffsetY - 10)
-          ..lineTo(hornOffsetX + 014, hornOffsetY - 4)
-          ..lineTo(hornOffsetX + 011, hornOffsetY - 13)
-          ..lineTo(hornOffsetX + 005, hornOffsetY - 11)
+          ..lineTo(hornOffsetX - 024, hornOffsetY - 50)
+          ..lineTo(hornOffsetX + 000, hornOffsetY - 44)
+          ..lineTo(hornOffsetX + 144, hornOffsetY - 168)
+          ..lineTo(hornOffsetX + 198, hornOffsetY - 52)
+          ..lineTo(hornOffsetX + 120, hornOffsetY - 42)
+          ..lineTo(hornOffsetX + 118, hornOffsetY - 20)
+          ..lineTo(hornOffsetX + 028, hornOffsetY - 08)
+          ..lineTo(hornOffsetX + 022, hornOffsetY - 26)
+          ..lineTo(hornOffsetX + 010, hornOffsetY - 22)
           ..lineTo(hornOffsetX + 000, hornOffsetY),
         backgroundPaint)
     ..drawPath(
         ui.Path()
-          ..moveTo(hornOffsetX + 16, hornOffsetY - 14)
-          ..lineTo(hornOffsetX + 17, hornOffsetY - 9)
-          ..lineTo(hornOffsetX + 54, hornOffsetY - 15)
-          ..lineTo(hornOffsetX + 53, hornOffsetY - 20)
-          ..lineTo(hornOffsetX + 16, hornOffsetY - 14),
+          ..moveTo(hornOffsetX + 032, hornOffsetY - 28)
+          ..lineTo(hornOffsetX + 034, hornOffsetY - 18)
+          ..lineTo(hornOffsetX + 108, hornOffsetY - 30)
+          ..lineTo(hornOffsetX + 106, hornOffsetY - 40)
+          ..lineTo(hornOffsetX + 032, hornOffsetY - 28),
         paint);
 
   hornOffsetY += logoHeight + 20;
@@ -73,25 +72,25 @@ void beginFrame(Duration timeStamp) {
         ui.PointMode.polygon,
         <ui.Offset>[
           ui.Offset(hornOffsetX, hornOffsetY),
-          ui.Offset(hornOffsetX - 012, hornOffsetY - 25),
-          ui.Offset(hornOffsetX + 000, hornOffsetY - 22),
-          ui.Offset(hornOffsetX + 072, hornOffsetY - 84),
-          ui.Offset(hornOffsetX + 099, hornOffsetY - 26),
-          ui.Offset(hornOffsetX + 060, hornOffsetY - 21),
-          ui.Offset(hornOffsetX + 059, hornOffsetY - 10),
-          ui.Offset(hornOffsetX + 014, hornOffsetY - 4),
-          ui.Offset(hornOffsetX + 011, hornOffsetY - 13),
-          ui.Offset(hornOffsetX + 005, hornOffsetY - 11),
+          ui.Offset(hornOffsetX - 024, hornOffsetY - 50),
+          ui.Offset(hornOffsetX + 000, hornOffsetY - 44),
+          ui.Offset(hornOffsetX + 144, hornOffsetY - 168),
+          ui.Offset(hornOffsetX + 198, hornOffsetY - 52),
+          ui.Offset(hornOffsetX + 120, hornOffsetY - 42),
+          ui.Offset(hornOffsetX + 118, hornOffsetY - 20),
+          ui.Offset(hornOffsetX + 028, hornOffsetY - 08),
+          ui.Offset(hornOffsetX + 022, hornOffsetY - 26),
+          ui.Offset(hornOffsetX + 010, hornOffsetY - 22),
           ui.Offset(hornOffsetX + 000, hornOffsetY),
         ],
         paint)
     ..drawPath(
         ui.Path()
-          ..moveTo(hornOffsetX + 16, hornOffsetY - 14)
-          ..lineTo(hornOffsetX + 17, hornOffsetY - 9)
-          ..lineTo(hornOffsetX + 54, hornOffsetY - 15)
-          ..lineTo(hornOffsetX + 53, hornOffsetY - 20)
-          ..lineTo(hornOffsetX + 16, hornOffsetY - 14),
+          ..moveTo(hornOffsetX + 032, hornOffsetY - 28)
+          ..lineTo(hornOffsetX + 034, hornOffsetY - 18)
+          ..lineTo(hornOffsetX + 108, hornOffsetY - 30)
+          ..lineTo(hornOffsetX + 106, hornOffsetY - 40)
+          ..lineTo(hornOffsetX + 032, hornOffsetY - 28),
         paint);
 
   final ui.Picture picture = recorder.endRecording();
